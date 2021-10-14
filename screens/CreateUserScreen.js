@@ -5,15 +5,17 @@ import {
   StyleSheet,
   TextInput,
   ScrollView,
+  ActivityIndicator,
 } from "react-native";
 
 import firebase from "../database/firebase";
 
 const AddUserScreen = (props) => {
-  const initalState = {
+  const initalState = { // nombres completos, fecha de nacimiento, estatura, dirección y ubicación GPS
     name: "",
-    email: "",
-    phone: "",
+    birthday: "",
+    height: "",
+    adress:"",
   };
 
   const [state, setState] = useState(initalState);
@@ -30,8 +32,9 @@ const AddUserScreen = (props) => {
       try {
         await firebase.db.collection("users").add({
           name: state.name,
-          email: state.email,
-          phone: state.phone,
+          birthday: state.birthday,
+          height: state.height,
+          adress:state.adress,
         });
 
         props.navigation.navigate("UsersList");
@@ -46,29 +49,37 @@ const AddUserScreen = (props) => {
       {/* Name Input */}
       <View style={styles.inputGroup}>
         <TextInput
-          placeholder="Name"
+          placeholder="Nombres completos"
           onChangeText={(value) => handleChangeText(value, "name")}
           value={state.name}
         />
       </View>
 
-      {/* Email Input */}
+      {/* Birthday Input */}
       <View style={styles.inputGroup}>
         <TextInput
-          placeholder="Email"
+          placeholder="Cumpleaños"
           multiline={true}
           numberOfLines={4}
-          onChangeText={(value) => handleChangeText(value, "email")}
-          value={state.email}
+          onChangeText={(value) => handleChangeText(value, "birthday")}
+          value={state.birthday}
         />
       </View>
 
       {/* Input */}
       <View style={styles.inputGroup}>
         <TextInput
-          placeholder="phone"
-          onChangeText={(value) => handleChangeText(value, "phone")}
-          value={state.phone}
+          placeholder="Estatura"
+          onChangeText={(value) => handleChangeText(value, "height")}
+          value={state.height}
+        />
+      </View>
+      {/* Input */}
+      <View style={styles.inputGroup}>
+        <TextInput
+          placeholder="Dirección"
+          onChangeText={(value) => handleChangeText(value, "adress")}
+          value={state.adress}
         />
       </View>
 

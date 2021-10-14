@@ -15,8 +15,9 @@ const UserDetailScreen = (props) => {
   const initialState = {
     id: "",
     name: "",
-    email: "",
-    phone: "",
+    birthday: "",
+    height: "",
+    adress:"",
   };
 
   const [user, setUser] = useState(initialState);
@@ -46,11 +47,11 @@ const UserDetailScreen = (props) => {
 
   const openConfirmationAlert = () => {
     Alert.alert(
-      "Removing the User",
-      "Are you sure?",
+      "Eliminando paciente",
+      "está seguro?",
       [
-        { text: "Yes", onPress: () => deleteUser() },
-        { text: "No", onPress: () => console.log("canceled") },
+        { text: "SI", onPress: () => deleteUser() },
+        { text: "NO", onPress: () => console.log("canceled") },
       ],
       {
         cancelable: true,
@@ -62,8 +63,9 @@ const UserDetailScreen = (props) => {
     const userRef = firebase.db.collection("users").doc(user.id);
     await userRef.set({
       name: user.name,
-      email: user.email,
-      phone: user.phone,
+      birthday: user.birthday,
+      height: user.height,
+      adress:user.adress,
     });
     setUser(initialState);
     props.navigation.navigate("UsersList");
@@ -85,7 +87,7 @@ const UserDetailScreen = (props) => {
     <ScrollView style={styles.container}>
       <View>
         <TextInput
-          placeholder="Name"
+          placeholder="Nombres completos"
           autoCompleteType="username"
           style={styles.inputGroup}
           value={user.name}
@@ -94,31 +96,40 @@ const UserDetailScreen = (props) => {
       </View>
       <View>
         <TextInput
-          autoCompleteType="email"
-          placeholder="Email"
+          autoCompleteType="date"
+          placeholder="Fecha de nacimiento"
           style={styles.inputGroup}
-          value={user.email}
-          onChangeText={(value) => handleTextChange(value, "email")}
+          value={user.birthday}
+          onChangeText={(value) => handleTextChange(value, "birthday")}
         />
       </View>
       <View>
         <TextInput
-          placeholder="Phone"
-          autoCompleteType="tel"
+          placeholder="Estatura"
+          autoCompleteType="number"
           style={styles.inputGroup}
-          value={user.phone}
-          onChangeText={(value) => handleTextChange(value, "phone")}
+          value={user.height}
+          onChangeText={(value) => handleTextChange(value, "height")}
+        />
+      </View>
+      <View>
+        <TextInput
+          placeholder="Dirección"
+          autoCompleteType="text"
+          style={styles.inputGroup}
+          value={user.adress}
+          onChangeText={(value) => handleTextChange(value, "adress")}
         />
       </View>
       <View style={styles.btn}>
         <Button
-          title="Delete"
+          title="Eliminar"
           onPress={() => openConfirmationAlert()}
           color="#E37399"
         />
       </View>
       <View>
-        <Button title="Update" onPress={() => updateUser()} color="#19AC52" />
+        <Button title="Editar" onPress={() => updateUser()} color="#19AC52" />
       </View>
     </ScrollView>
   );

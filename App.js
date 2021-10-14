@@ -10,6 +10,10 @@ import { createStackNavigator } from "@react-navigation/stack";
 import CreateUserScreen from "./screens/CreateUserScreen";
 import UserDetailScreen from "./screens/UserDetailScreen";
 import UsersList from "./screens/UsersList";
+import InicioScreen from "./screens/InicioScreen";
+import AttentionList from "./screens/AttentionList"
+import CreateAttentionScreen from "./screens/CreateAttentionScreen"
+import CreateAttentionScreenListUser from "./screens/CreateAttentionScreenListUser"
 
 const Stack = createStackNavigator();
 
@@ -27,20 +31,40 @@ function MyStack() {
       }}
     >
       <Stack.Screen
+        name="InicioScreen"
+        component={InicioScreen}
+        options={{ title: "APP MEDICA" }}
+      />
+      <Stack.Screen
         name="UsersList"
         component={UsersList}
-        options={{ title: "Users List" }}
+        options={{ title: "Historial Pacientes" }}
       />
       <Stack.Screen
         name="CreateUserScreen"
         component={CreateUserScreen}
-        options={{ title: "Create a New User" }}
+        options={{ title: "Agregar nuevo paciente" }}
       />
       <Stack.Screen
         name="UserDetailScreen"
         component={UserDetailScreen}
-        options={{ title: "User Detail" }}
+        options={{ title: "Datos de paciente" }}
       />
+       <Stack.Screen
+        name="AttentionList"
+        component={AttentionList}
+        options={{ title: "Historial de consultas" }}
+      />
+       <Stack.Screen
+        name="CreateAttentionScreen"
+        component={CreateAttentionScreen}
+        options={{ title: "Agregar nueva consulta" }}
+      />
+      <Stack.Screen
+       name="CreateAttentionScreenListUser"
+       component={CreateAttentionScreenListUser}
+       options={{ title: "Seleccionar Paciente" }}
+     />
     </Stack.Navigator>
   );
 }
