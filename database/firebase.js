@@ -1,13 +1,14 @@
 import firebase from "firebase";
 import "firebase/firestore";
 
-var firebaseConfig = {
-  apiKey: "AIzaSyAyx2Wl98UmhrZMSH0K-kYTE0_cw574jwE",
-  authDomain: "appreact-40f44.firebaseapp.com",
-  projectId: "appreact-40f44",
-  storageBucket: "appreact-40f44.appspot.com",
-  messagingSenderId: "830695512705",
-  appId: "1:830695512705:web:07db7473975cea892ecb80"
+var firebaseConfig = {  
+  apiKey: "AIzaSyBp1GOPdFk_BY83F9XIXYtWEmhbBrTOgj8",
+  authDomain: "aplicativoventas-47fb6.firebaseapp.com",
+  projectId: "aplicativoventas-47fb6",
+  storageBucket: "aplicativoventas-47fb6.appspot.com",
+  messagingSenderId: "263637688733",
+  appId: "1:263637688733:web:73f9ae4b9d1f6edf118f74",
+  measurementId: "G-1W7359G9DF"
 };
 
 
