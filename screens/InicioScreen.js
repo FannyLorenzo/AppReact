@@ -9,7 +9,7 @@ const InicioScreen = (props) => {
   return (
     <ScrollView>
        <Button
-        onPress={() => props.navigation.navigate("UsersList")}
+        onPress={() => props.navigation.navigate("ProductosList")}
         icon={
           <Icon
             name="gift"
@@ -22,7 +22,7 @@ const InicioScreen = (props) => {
         
       /> 
        <Button
-        onPress={() => props.navigation.navigate("AttentionList")}
+        onPress={() => props.navigation.navigate("PedidoList")}
         icon={
           <Icon
             name="cart-arrow-down"

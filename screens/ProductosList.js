@@ -5,7 +5,7 @@ import { ScrollView } from "react-native-gesture-handler";
 
 import firebase from "../database/firebase";
 
-const UserScreen = (props) => {
+const ProductoScreen = (props) => {
   const [productos, setProductos] = useState([]);
 
   useEffect(() => {
@@ -28,17 +28,17 @@ const UserScreen = (props) => {
   return (
     <ScrollView>
       <Button
-        onPress={() => props.navigation.navigate("CreateUserScreen")}
+        onPress={() => props.navigation.navigate("CreateProductoScreen")}
         title="Agregar producto"
       />
-      {users.map((user) => {
+      {productos.map((producto) => {
         return (
           <ListItem
-            key={user.id}
+            key={producto.id}
             bottomDivider
             onPress={() => {
-              props.navigation.navigate("UserDetailScreen", {
-                userId: user.id,
+              props.navigation.navigate("ProductoDetailScreen", {
+                productoId: producto.id,
               });
             }}
           >
@@ -46,14 +46,15 @@ const UserScreen = (props) => {
             <Avatar
               source={{
                 uri:
-                  "https://e7.pngegg.com/pngimages/775/628/png-clipart-computer-icons-avatar-user-profile-avatar-heroes-woman.png",
+                  "https://cdn-icons-png.flaticon.com/512/166/166913.png",
               }}
               rounded
             />
             <ListItem.Content>
-              <ListItem.Title>{user.name}</ListItem.Title>
-              <ListItem.Subtitle>{user.birthday}</ListItem.Subtitle>
-              <ListItem.Subtitle>{user.adress}</ListItem.Subtitle>
+              <ListItem.Title>{producto.nombre}</ListItem.Title>
+              <ListItem.Subtitle>Descripción: {producto.descripcion}</ListItem.Subtitle>
+              <ListItem.Subtitle>Precio: S/{producto.precio} Stock disponible: {producto.cantidad}</ListItem.Subtitle>
+              
             </ListItem.Content>
           </ListItem>
         );
@@ -62,4 +63,4 @@ const UserScreen = (props) => {
   );
 };
 
-export default UserScreen;
+export default ProductoScreen;
