@@ -5,10 +5,30 @@ import { ScrollView } from "react-native-gesture-handler";
 
 import firebase from "../database/firebase";
 
-const InicioScreen = (props) => { 
+const InicioScreen = (props) => {
+  const [state, setState] = useState({
+    longitud: 0,
+    latitud: 0,
+  });
+  useEffect(() => {
+    navigator.geolocation.getCurrentPosition(
+      function (position) {
+        setState({
+          longitud: position.coords.longitude,
+          latitud: position.coords.latitude
+        })
+      },
+      function (error) {
+        console.log(error)
+      },
+      {
+        enableHighAccuracy: true
+      }
+    );
+  });
   return (
     <ScrollView>
-       <Button
+      <Button
         onPress={() => props.navigation.navigate("UsersList")}
         icon={
           <Icon
@@ -18,10 +38,10 @@ const InicioScreen = (props) => {
           />
         }
         title=" Pacientes"
-        type="outline"       
-        
-      /> 
-       <Button
+        type="outline"
+
+      />
+      <Button
         onPress={() => props.navigation.navigate("AttentionList")}
         icon={
           <Icon
@@ -31,11 +51,14 @@ const InicioScreen = (props) => {
           />
         }
         title=" Atenciones"
-        type="outline"       
-        
-      />      
+        type="outline"
+
+      />
+      <div>
+        <p>longitud:{state.longitud}</p>
+        <p>latitud:{state.latitud}</p>
+      </div>
     </ScrollView>
-    
   );
 };
 
