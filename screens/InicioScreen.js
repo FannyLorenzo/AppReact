@@ -6,26 +6,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import firebase from "../database/firebase";
 
 const InicioScreen = (props) => {
-  const [state, setState] = useState({
-    longitud: 0,
-    latitud: 0,
-  });
-  useEffect(() => {
-    navigator.geolocation.getCurrentPosition(
-      function (position) {
-        setState({
-          longitud: position.coords.longitude,
-          latitud: position.coords.latitude
-        })
-      },
-      function (error) {
-        console.log(error)
-      },
-      {
-        enableHighAccuracy: true
-      }
-    );
-  });
+  
   return (
     <ScrollView>
       <Button
@@ -54,10 +35,19 @@ const InicioScreen = (props) => {
         type="outline"
 
       />
-      <div>
-        <p>longitud:{state.longitud}</p>
-        <p>latitud:{state.latitud}</p>
-      </div>
+      <Button
+        onPress={() => props.navigation.navigate("Location")}
+        icon={
+          <Icon
+            name="id-card-o"
+            size={15}
+            color="blue"
+          />
+        }
+        title="Ver Localización"
+        type="outline"
+
+      />
     </ScrollView>
   );
 };

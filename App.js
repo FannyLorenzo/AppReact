@@ -14,6 +14,7 @@ import InicioScreen from "./screens/InicioScreen";
 import AttentionList from "./screens/AttentionList"
 import CreateAttentionScreen from "./screens/CreateAttentionScreen"
 import CreateAttentionScreenListUser from "./screens/CreateAttentionScreenListUser"
+import Location from "./screens/Location"
 
 const Stack = createStackNavigator();
 
@@ -64,6 +65,11 @@ function MyStack() {
        name="CreateAttentionScreenListUser"
        component={CreateAttentionScreenListUser}
        options={{ title: "Seleccionar Paciente" }}
+     />
+     <Stack.Screen
+       name="Location"
+       component={Location}
+       options={{ title: "Ver Localización" }}
      />
     </Stack.Navigator>
   );
