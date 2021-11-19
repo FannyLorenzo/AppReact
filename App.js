@@ -33,7 +33,7 @@ function MyStack() {
       <Stack.Screen
         name="InicioScreen"
         component={InicioScreen}
-        options={{ title: "APP MEDICA" }}
+        options={{ title: "APP VENTAS" }}
       />
       <Stack.Screen
         name="UsersList"

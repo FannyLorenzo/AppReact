@@ -6,21 +6,22 @@ import { ScrollView } from "react-native-gesture-handler";
 import firebase from "../database/firebase";
 
 const UserScreen = (props) => {
-  const [users, setUsers] = useState([]);
+  const [productos, setProductos] = useState([]);
 
   useEffect(() => {
-    firebase.db.collection("users").onSnapshot((querySnapshot) => {
-      const users = [];
+    firebase.db.collection("productos").onSnapshot((querySnapshot) => {
+      const productos = [];
       querySnapshot.docs.forEach((doc) => {
-        const { name, birthday, adress } = doc.data();
-        users.push({ // name:"", birthday:"", height:"", adress:"",
+        const { nombre, descripcion, precio, cantidad } = doc.data();
+        productos.push({ // Nombre del producto, Descripción, Precio,  Cantidad ofertada. HOLI
           id: doc.id,
-          name,
-          birthday,
-          adress,
+          nombre,
+          descripcion,
+          precio,
+          cantidad
         });
       });
-      setUsers(users);
+      setProductos(productos);
     });
   }, []);
 
@@ -28,7 +29,7 @@ const UserScreen = (props) => {
     <ScrollView>
       <Button
         onPress={() => props.navigation.navigate("CreateUserScreen")}
-        title="Agregar paciente"
+        title="Agregar producto"
       />
       {users.map((user) => {
         return (

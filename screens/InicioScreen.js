@@ -12,12 +12,12 @@ const InicioScreen = (props) => {
         onPress={() => props.navigation.navigate("UsersList")}
         icon={
           <Icon
-            name="user-circle-o"
+            name="gift"
             size={15}
             color="blue"
           />
         }
-        title=" Pacientes"
+        title=" Productos"
         type="outline"       
         
       /> 
@@ -25,12 +25,12 @@ const InicioScreen = (props) => {
         onPress={() => props.navigation.navigate("AttentionList")}
         icon={
           <Icon
-            name="id-card-o"
+            name="cart-arrow-down"
             size={15}
             color="blue"
           />
         }
-        title=" Atenciones"
+        title=" Compras"
         type="outline"       
         
       />      
