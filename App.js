@@ -6,14 +6,7 @@ import { StyleSheet } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-// Components
-import CreateProductoScreen from "./screens/CreateProductoScreen";
-import ProductoDetailScreen from "./screens/ProductoDetailScreen";
-import ProductosList from "./screens/ProductosList";
-import InicioScreen from "./screens/InicioScreen";
-import PedidoList from "./screens/PedidoList"
-import CreatePedidoScreen from "./screens/CreatePedidoScreen"
-import CreatePedidoScreenListProducto from "./screens/CreatePedidoScreenListProducto"
+import Navigation from "./Navigation";
 
 const Stack = createStackNavigator();
 
@@ -30,50 +23,15 @@ function MyStack() {
         },
       }}
     >
-      <Stack.Screen
-        name="InicioScreen"
-        component={InicioScreen}
-        options={{ title: "APP VENTAS" }}
-      />
-      <Stack.Screen
-        name="ProductosList"
-        component={ProductosList}
-        options={{ title: "Productos Ofertados" }}
-      />
-      <Stack.Screen
-        name="CreateProductoScreen"
-        component={CreateProductoScreen}
-        options={{ title: "Nuevo producto" }}
-      />
-      <Stack.Screen
-        name="ProductoDetailScreen"
-        component={ProductoDetailScreen}
-        options={{ title: "Datos de producto" }}
-      />
-       <Stack.Screen
-        name="PedidoList"
-        component={PedidoList}
-        options={{ title: "Historial de compras" }}
-      />
-       <Stack.Screen
-        name="CreatePedidoScreen"
-        component={CreatePedidoScreen}
-        options={{ title: "Agregar nueva compra" }}
-      />
-      <Stack.Screen
-       name="CreatePedidoScreenListProducto"
-       component={CreatePedidoScreenListProducto}
-       options={{ title: "Seleccione un producto" }}
-     />
     </Stack.Navigator>
   );
 }
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
+    
+      <Navigation />
+    
   );
 }
 
