@@ -10,12 +10,12 @@ import {
 
 import firebase from "../database/firebase";
 
-const AddUserScreen = (props) => {
-  const initalState = { // nombres completos, fecha de nacimiento, estatura, dirección y ubicación GPS
-    name: "",
-    birthday: "",
-    height: "",
-    adress:"",
+const AddProductoScreen = (props) => {
+  const initalState = { // 
+    nombre: "",
+    descripcion: "",
+    precio: "",
+    cantidad:"",
   };
 
   const [state, setState] = useState(initalState);
@@ -24,20 +24,20 @@ const AddUserScreen = (props) => {
     setState({ ...state, [name]: value });
   };
 
-  const saveNewUser = async () => {
-    if (state.name === "") {
-      alert("please provide a name");
+  const saveNewProducto = async () => {
+    if (state.nombre === "") {
+      alert("Favor de proveer el nombre del producto");
     } else {
 
       try {
-        await firebase.db.collection("users").add({
-          name: state.name,
-          birthday: state.birthday,
-          height: state.height,
-          adress:state.adress,
+        await firebase.db.collection("productos").add({
+          nombre: state.nombre,
+          descripcion: state.descripcion,
+          precio: state.precio,
+          cantidad:state.cantidad,
         });
 
-        props.navigation.navigate("UsersList");
+        props.navigation.navigate("ProductosList");
       } catch (error) {
         console.log(error)
       }
@@ -49,42 +49,42 @@ const AddUserScreen = (props) => {
       {/* Name Input */}
       <View style={styles.inputGroup}>
         <TextInput
-          placeholder="Nombres completos"
-          onChangeText={(value) => handleChangeText(value, "name")}
-          value={state.name}
+          placeholder="Nombre del producto"
+          onChangeText={(value) => handleChangeText(value, "nombre")}
+          value={state.nombre}
         />
       </View>
 
       {/* Birthday Input */}
       <View style={styles.inputGroup}>
         <TextInput
-          placeholder="Cumpleaños"
+          placeholder="Decripción"
           multiline={true}
           numberOfLines={4}
-          onChangeText={(value) => handleChangeText(value, "birthday")}
-          value={state.birthday}
+          onChangeText={(value) => handleChangeText(value, "descripcion")}
+          value={state.descripcion}
         />
       </View>
 
       {/* Input */}
       <View style={styles.inputGroup}>
         <TextInput
-          placeholder="Estatura"
-          onChangeText={(value) => handleChangeText(value, "height")}
-          value={state.height}
+          placeholder="Precio S/"
+          onChangeText={(value) => handleChangeText(value, "precio")}
+          value={state.precio}
         />
       </View>
       {/* Input */}
       <View style={styles.inputGroup}>
         <TextInput
-          placeholder="Dirección"
-          onChangeText={(value) => handleChangeText(value, "adress")}
-          value={state.adress}
+          placeholder="Cantidad"
+          onChangeText={(value) => handleChangeText(value, "cantidad")}
+          value={state.cantidad}
         />
       </View>
 
       <View style={styles.button}>
-        <Button title="Save User" onPress={() => saveNewUser()} />
+        <Button title="Agregar Producto" onPress={() => saveNewProducto()} />
       </View>
     </ScrollView>
   );
@@ -113,4 +113,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddUserScreen;
+export default AddProductoScreen;

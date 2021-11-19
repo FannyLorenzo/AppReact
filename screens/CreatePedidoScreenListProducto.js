@@ -5,20 +5,20 @@ import { ScrollView } from "react-native-gesture-handler";
 
 import firebase from "../database/firebase";
 
-const CreateAttentionScreenListUserScreen = (props) => {
-  const [users, setUsers] = useState([]);
+const CreatePedidoScreenListProductoScreen = (props) => {
+  const [productos, setProductos] = useState([]);
 
   useEffect(() => {
-    firebase.db.collection("users").onSnapshot((querySnapshot) => {
-      const users = [];
+    firebase.db.collection("productos").onSnapshot((querySnapshot) => {
+      const productos = [];
       querySnapshot.docs.forEach((doc) => {
-        const { name } = doc.data();
-        users.push({
+        const { nombre } = doc.data();
+        productos.push({
           id: doc.id,
-          name
+          nombre
         });
       });
-      setUsers(users);
+      setProductos(productos);
     });
   }, []);
 
@@ -26,18 +26,15 @@ const CreateAttentionScreenListUserScreen = (props) => {
 
   return (
     <ScrollView>
-      <View>
-        <h4> Seleccione un paciente</h4>
-      </View>
-      
-      {users.map((user) => {
+           
+      {productos.map((producto) => {
         return (
           <ListItem
-            key={user.id}
+            key={producto.id}
             bottomDivider
             onPress={() => {
-              props.navigation.navigate("CreateAttentionScreen", {
-                userId: user.id,
+              props.navigation.navigate("CreatePedidoScreen", {
+                productoId: producto.id,
               });
             }}
           >
@@ -45,13 +42,14 @@ const CreateAttentionScreenListUserScreen = (props) => {
             <Avatar
               source={{
                 uri:
-                "https://e7.pngegg.com/pngimages/775/628/png-clipart-computer-icons-avatar-user-profile-avatar-heroes-woman.png",
+                "https://cdn-icons-png.flaticon.com/512/166/166913.png",
               }}
               rounded
             />
             <ListItem.Content>
-              <ListItem.Title>{user.name}</ListItem.Title>
-              <ListItem.Subtitle>{user.email}</ListItem.Subtitle>
+              <ListItem.Title>{producto.nombre}</ListItem.Title>
+              <ListItem.Subtitle>{producto.descripcion}</ListItem.Subtitle>
+              <ListItem.Subtitle>{producto.precio}</ListItem.Subtitle>
             </ListItem.Content>
           </ListItem>
         );
@@ -60,4 +58,4 @@ const CreateAttentionScreenListUserScreen = (props) => {
   );
 };
 
-export default CreateAttentionScreenListUserScreen;
+export default CreatePedidoScreenListProductoScreen;

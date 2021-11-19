@@ -7,13 +7,13 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 // Components
-import CreateUserScreen from "./screens/CreateUserScreen";
-import UserDetailScreen from "./screens/UserDetailScreen";
-import UsersList from "./screens/UsersList";
+import CreateProductoScreen from "./screens/CreateProductoScreen";
+import ProductoDetailScreen from "./screens/ProductoDetailScreen";
+import ProductosList from "./screens/ProductosList";
 import InicioScreen from "./screens/InicioScreen";
-import AttentionList from "./screens/AttentionList"
-import CreateAttentionScreen from "./screens/CreateAttentionScreen"
-import CreateAttentionScreenListUser from "./screens/CreateAttentionScreenListUser"
+import PedidoList from "./screens/PedidoList"
+import CreatePedidoScreen from "./screens/CreatePedidoScreen"
+import CreatePedidoScreenListProducto from "./screens/CreatePedidoScreenListProducto"
 
 const Stack = createStackNavigator();
 
@@ -36,34 +36,34 @@ function MyStack() {
         options={{ title: "APP VENTAS" }}
       />
       <Stack.Screen
-        name="UsersList"
-        component={UsersList}
-        options={{ title: "Historial Pacientes" }}
+        name="ProductosList"
+        component={ProductosList}
+        options={{ title: "Productos Ofertados" }}
       />
       <Stack.Screen
-        name="CreateUserScreen"
-        component={CreateUserScreen}
-        options={{ title: "Agregar nuevo paciente" }}
+        name="CreateProductoScreen"
+        component={CreateProductoScreen}
+        options={{ title: "Nuevo producto" }}
       />
       <Stack.Screen
-        name="UserDetailScreen"
-        component={UserDetailScreen}
-        options={{ title: "Datos de paciente" }}
+        name="ProductoDetailScreen"
+        component={ProductoDetailScreen}
+        options={{ title: "Datos de producto" }}
       />
        <Stack.Screen
-        name="AttentionList"
-        component={AttentionList}
-        options={{ title: "Historial de consultas" }}
+        name="PedidoList"
+        component={PedidoList}
+        options={{ title: "Historial de compras" }}
       />
        <Stack.Screen
-        name="CreateAttentionScreen"
-        component={CreateAttentionScreen}
-        options={{ title: "Agregar nueva consulta" }}
+        name="CreatePedidoScreen"
+        component={CreatePedidoScreen}
+        options={{ title: "Agregar nueva compra" }}
       />
       <Stack.Screen
-       name="CreateAttentionScreenListUser"
-       component={CreateAttentionScreenListUser}
-       options={{ title: "Seleccionar Paciente" }}
+       name="CreatePedidoScreenListProducto"
+       component={CreatePedidoScreenListProducto}
+       options={{ title: "Seleccione un producto" }}
      />
     </Stack.Navigator>
   );
