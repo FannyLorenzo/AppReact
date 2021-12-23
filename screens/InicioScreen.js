@@ -6,7 +6,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import firebase from "../database/firebase";
 
 const InicioScreen = (props) => {
-  
+
   return (
     <ScrollView>
       <Button
@@ -18,7 +18,7 @@ const InicioScreen = (props) => {
             color="blue"
           />
         }
-        title=" Pacientes"
+        title=" Producto"
         type="outline"
 
       />
@@ -31,7 +31,7 @@ const InicioScreen = (props) => {
             color="blue"
           />
         }
-        title=" Atenciones"
+        title=" Pedido"
         type="outline"
 
       />
@@ -44,7 +44,7 @@ const InicioScreen = (props) => {
             color="blue"
           />
         }
-        title="Ver Localización"
+        title=" Ver Localización"
         type="outline"
 
       />
