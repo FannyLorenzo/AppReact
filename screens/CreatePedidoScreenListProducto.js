@@ -12,10 +12,12 @@ const CreatePedidoScreenListProductoScreen = (props) => {
     firebase.db.collection("productos").onSnapshot((querySnapshot) => {
       const productos = [];
       querySnapshot.docs.forEach((doc) => {
-        const { nombre } = doc.data();
+        const { nombre, descripcion, precio } = doc.data();
         productos.push({
           id: doc.id,
-          nombre
+          nombre,
+          descripcion,
+          precio
         });
       });
       setProductos(productos);
@@ -49,7 +51,7 @@ const CreatePedidoScreenListProductoScreen = (props) => {
             <ListItem.Content>
               <ListItem.Title>{producto.nombre}</ListItem.Title>
               <ListItem.Subtitle>{producto.descripcion}</ListItem.Subtitle>
-              <ListItem.Subtitle>{producto.precio}</ListItem.Subtitle>
+              <ListItem.Subtitle> Precio: S/ {producto.precio}</ListItem.Subtitle>
             </ListItem.Content>
           </ListItem>
         );

@@ -7,10 +7,14 @@ import {
   ScrollView,
   ActivityIndicator,
 } from "react-native";
+import {  Text, Input} from 'react-native-elements';
 
 import firebase from "../database/firebase";
+import Moment from 'moment';
+
 
 const AddPedidoScreen = (props) => {
+  
   const initalState = { 
     id_producto:"",
     nombre: "",
@@ -24,6 +28,7 @@ const AddPedidoScreen = (props) => {
   const [state, setState] = useState(initalState);
   const [loading, setLoading] = useState(true);
 
+
    const handleChangeText = (value, name) => {   
     setState({ ...state, [name]: value });
   };
@@ -35,9 +40,10 @@ const AddPedidoScreen = (props) => {
     setState({ ...state, 
         id_producto: doc.id,
         fecha:"",
-    precio:"",
+    precio:state.precio,
     cantidad:"",
-    direccion:""
+    direccion:"",
+    descripcion: state.descripcion
      });
     setLoading(false);
   };
@@ -61,7 +67,7 @@ const AddPedidoScreen = (props) => {
       try {
         await firebase.db.collection("pedidos").add({
           nombre: state.nombre,
-          fecha: state.fecha,
+          fecha: Moment().format("YYYY-MM-DD"),
           precio:state.precio,
           cantidad:state.cantidad,
           direccion: state.direccion,
@@ -77,37 +83,36 @@ const AddPedidoScreen = (props) => {
 
   return (
     <ScrollView style={styles.container}>
-      {/* Name Input */}
+      
+       {/* datos*/}
       <View style={styles.inputGroup}>
-        <TextInput
-          placeholder="Nombre del producto"
-          onChangeText={(value) => handleChangeText(value, "nombre")}
-          value={state.nombre}
-        />
-      </View>
+        <Text
+          h5
+        >
+          Producto: {state.nombre}
+        </Text>
+        </View>
 
-      {/* Birthday Input */}
-      <View style={styles.inputGroup}>
-        <TextInput
-          placeholder="Fecha de atención"
-          multiline={true}
-          numberOfLines={4}
-          onChangeText={(value) => handleChangeText(value, "fecha")}
-          value={state.fecha}
-        />
-      </View>
-
+        <View style={styles.inputGroup}>
+        <Text
+          h6
+        >
+          Precio: {state.precio} 
+        </Text>
+        </View>
+        <View style={styles.inputGroup}>
+        <Text
+          h6
+        >
+          Fecha de transacción: {Moment().format("YYYY-MM-DD")}
+        </Text>
+        </View>
+        
+      
       {/* Input */}
       <View style={styles.inputGroup}>
         <TextInput
-          placeholder="precio"
-          onChangeText={(value) => handleChangeText(value, "precio")}
-          value={state.precio}
-        />
-      </View>
-      {/* Input */}
-      <View style={styles.inputGroup}>
-        <TextInput
+        
           placeholder="cantidad"
           onChangeText={(value) => handleChangeText(value, "cantidad")}
           value={state.cantidad}
@@ -115,17 +120,17 @@ const AddPedidoScreen = (props) => {
       </View>
       {/* Input */}
       <View style={styles.inputGroup}>
-        <TextInput
-          placeholder="Dirección"
+        <TextInput  
+          placeholder ="Dirección"
           onChangeText={(value) => handleChangeText(value, "direccion")}
           value={state.direccion}
         />
-      </View>
+      </View>     
+       
+        <View style={styles.buttonsContainer}>
+        <Button title="Agregar Producto" onPress={() => saveNewPedido()} />
+      </View>     
      
-
-      <View style={styles.button}>
-        <Button title="Guardar Pedido" onPress={() => saveNewPedido()} />
-      </View>
     </ScrollView>
   );
 };
@@ -142,6 +147,15 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#cccccc",
   },
+ 
+  buttonsContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: '100%',
+    marginVertical: 20,
+  },
   loader: {
     left: 0,
     right: 0,
@@ -150,6 +164,10 @@ const styles = StyleSheet.create({
     position: "absolute",
     alignItems: "center",
     justifyContent: "center",
+  },
+  text: {
+    textAlign: 'center',
+    padding: 5,
   },
 });
 
