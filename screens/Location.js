@@ -7,7 +7,6 @@ import {
     ScrollView,
     ActivityIndicator,
 } from "react-native";
-import { MapView } from "expo";
 
 const Location = (props) => {
     const [state, setState] = useState({
@@ -52,18 +51,8 @@ const Location = (props) => {
         </View>
         <View style={styles.button}>
             <Button
-                onPress={() => props.navigation.navigate("InicioScreen")}
+                onPress={() => props.navigation.navigate("CreatePedidoScreen")}
                 title="Volver"
-            />
-        </View>
-        <View style={styles.container}>
-            <MapView
-                initialRegion={{
-                    latitude: 37.78825,
-                    longitude: -122.4324,
-                    latitudeDelta: 0.0922,
-                    longitudeDelta: 0.0421,
-                }}
             />
         </View>
     </ScrollView>

@@ -7,6 +7,7 @@ import {
   ScrollView,
   ActivityIndicator,
 } from "react-native";
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 import firebase from "../database/firebase";
 
@@ -20,7 +21,6 @@ const AddPedidoScreen = (props) => {
     direccion:"",
     entregado:false
   };
-
   const [state, setState] = useState(initalState);
   const [loading, setLoading] = useState(true);
 
@@ -121,10 +121,17 @@ const AddPedidoScreen = (props) => {
           value={state.direccion}
         />
       </View>
-     
+
+      <View style={styles.inputGroup}>
+      <Button
+        onPress={() => props.navigation.navigate("Location")}
+        color= "gray"
+        title=" ver Coordenadas"    
+        
+      /></View>  
 
       <View style={styles.button}>
-        <Button title="Guardar Pedido" onPress={() => saveNewPedido()} />
+        <Button title="Guardar Pedido" color= "green" onPress={() => saveNewPedido()} />
       </View>
     </ScrollView>
   );
