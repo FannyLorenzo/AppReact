@@ -10,15 +10,14 @@ import {
 
 import firebase from "../database/firebase";
 
-const AddAttentionScreen = (props) => {
+const AddPedidoScreen = (props) => {
   const initalState = { 
-    id_user:"",
-    name: "",
-    date:"",
-    peso:"",
-    temperatura:"",
-    presion:"",
-    saturacion:""
+    id_producto:"",
+    nombre: "",
+    fecha:"",
+    precio:"",
+    cantidad:"",
+    direccion:""
   };
 
   const [state, setState] = useState(initalState);
@@ -28,23 +27,22 @@ const AddAttentionScreen = (props) => {
     setState({ ...state, [name]: value });
   };
 
-  const getUserById = async (id) => {
-    const dbRef = firebase.db.collection("users").doc(id);
+  const getProductoById = async (id) => {
+    const dbRef = firebase.db.collection("productos").doc(id);
     const doc = await dbRef.get();
     const state = doc.data();
     setState({ ...state, 
-        id_user: doc.id,
-        date:"",
-    peso:"",
-    temperatura:"",
-    presion:"",
-    saturacion:""
+        id_producto: doc.id,
+        fecha:"",
+    precio:"",
+    cantidad:"",
+    direccion:""
      });
     setLoading(false);
   };
 
   useEffect(() => {
-    getUserById(props.route.params.userId);
+    getProductoById(props.route.params.productoId);
   }, []);
 
   if (loading) {
@@ -54,22 +52,21 @@ const AddAttentionScreen = (props) => {
       </View>
     );
   }
-  const saveNewAttention = async () => {
-    if (state.peso === "") {
-      alert("porfavor ingrese el peso");
+  const saveNewPedido = async () => {
+    if (state.cantidad === "") {
+      alert("porfavor ingrese la cantidad");
     } else {
 
       try {
-        await firebase.db.collection("attentions").add({
-          name: state.name,
-          date: state.date,
-          peso:state.peso,
-          temperatura:state.temperatura,
-          presion: state.presion,
-          saturacion:state.saturacion,
+        await firebase.db.collection("pedidos").add({
+          nombre: state.nombre,
+          fecha: state.fecha,
+          precio:state.precio,
+          cantidad:state.cantidad,
+          direccion: state.direccion
         });
 
-        props.navigation.navigate("AttentionList");
+        props.navigation.navigate("PedidoList");
       } catch (error) {
         console.log(error)
       }
@@ -81,9 +78,9 @@ const AddAttentionScreen = (props) => {
       {/* Name Input */}
       <View style={styles.inputGroup}>
         <TextInput
-          placeholder="Nombres completos"
-          onChangeText={(value) => handleChangeText(value, "name")}
-          value={state.name}
+          placeholder="Nombre del producto"
+          onChangeText={(value) => handleChangeText(value, "nombre")}
+          value={state.nombre}
         />
       </View>
 
@@ -93,46 +90,39 @@ const AddAttentionScreen = (props) => {
           placeholder="Fecha de atención"
           multiline={true}
           numberOfLines={4}
-          onChangeText={(value) => handleChangeText(value, "date")}
-          value={state.date}
+          onChangeText={(value) => handleChangeText(value, "fecha")}
+          value={state.fecha}
         />
       </View>
 
       {/* Input */}
       <View style={styles.inputGroup}>
         <TextInput
-          placeholder="Peso"
-          onChangeText={(value) => handleChangeText(value, "peso")}
-          value={state.peso}
+          placeholder="precio"
+          onChangeText={(value) => handleChangeText(value, "precio")}
+          value={state.precio}
         />
       </View>
       {/* Input */}
       <View style={styles.inputGroup}>
         <TextInput
-          placeholder="Temperatura"
-          onChangeText={(value) => handleChangeText(value, "temperatura")}
-          value={state.temperatura}
+          placeholder="cantidad"
+          onChangeText={(value) => handleChangeText(value, "cantidad")}
+          value={state.cantidad}
         />
       </View>
       {/* Input */}
       <View style={styles.inputGroup}>
         <TextInput
-          placeholder="Presión"
-          onChangeText={(value) => handleChangeText(value, "presion")}
-          value={state.presion}
+          placeholder="Dirección"
+          onChangeText={(value) => handleChangeText(value, "direccion")}
+          value={state.direccion}
         />
       </View>
-      {/* Input */}
-      <View style={styles.inputGroup}>
-        <TextInput
-          placeholder="Saturación"
-          onChangeText={(value) => handleChangeText(value, "saturacion")}
-          value={state.saturacion}
-        />
-      </View>
+     
 
       <View style={styles.button}>
-        <Button title="Guardar Consulta" onPress={() => saveNewAttention()} />
+        <Button title="Guardar Pedido" onPress={() => saveNewPedido()} />
       </View>
     </ScrollView>
   );
@@ -161,4 +151,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default AddAttentionScreen;
+export default AddPedidoScreen;

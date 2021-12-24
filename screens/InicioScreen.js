@@ -3,30 +3,28 @@ import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { ScrollView } from "react-native-gesture-handler";
 
-import firebase from "../database/firebase";
-
 const InicioScreen = (props) => {
 
   return (
     <ScrollView>
-      <Button
-        onPress={() => props.navigation.navigate("UsersList")}
+       <Button
+        onPress={() => props.navigation.navigate("ProductosList")}
         icon={
           <Icon
-            name="user-circle-o"
+            name="gift"
             size={15}
             color="blue"
           />
         }
-        title=" Producto"
-        type="outline"
-
-      />
-      <Button
-        onPress={() => props.navigation.navigate("AttentionList")}
+        title=" Productos"
+        type="outline"       
+        
+      /> 
+       <Button
+        onPress={() => props.navigation.navigate("PedidoList")}
         icon={
           <Icon
-            name="id-card-o"
+            name="cart-arrow-down"
             size={15}
             color="blue"
           />

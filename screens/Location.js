@@ -33,7 +33,7 @@ const Location = (props) => {
     });
     return (<ScrollView style={styles.container}>
         {/* Latitud Input */}
-        <h3>Latitud:</h3>
+        Latitud:
         <View style={styles.inputGroup}>
             <TextInput
             placeholder="Latitud"
@@ -42,12 +42,12 @@ const Location = (props) => {
         </View>
   
         {/* Longitud Input */}
-        <h3>Longitud:</h3>
+        Longitud:
         <View style={styles.inputGroup}>
           <TextInput
             placeholder="Longitud"
             multiline={true}
-            value={state.longitud}
+           value={state.longitud}
           />
         </View>
         <View style={styles.button}>

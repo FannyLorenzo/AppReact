@@ -11,47 +11,47 @@ import { TextInput } from "react-native-gesture-handler";
 
 import firebase from "../database/firebase";
 
-const UserDetailScreen = (props) => {
+const ProductoDetailScreen = (props) => {
   const initialState = {
     id: "",
-    name: "",
-    birthday: "",
-    height: "",
-    adress:"",
+    nombre: "",
+    descripcion: "",
+    precio: "",
+    cantidad:"",
   };
 
-  const [user, setUser] = useState(initialState);
+  const [producto, setProducto] = useState(initialState);
   const [loading, setLoading] = useState(true);
 
   const handleTextChange = (value, prop) => {
-    setUser({ ...user, [prop]: value });
+    setProducto({ ...producto, [prop]: value });
   };
 
-  const getUserById = async (id) => {
-    const dbRef = firebase.db.collection("users").doc(id);
+  const getProductoById = async (id) => {
+    const dbRef = firebase.db.collection("productos").doc(id);
     const doc = await dbRef.get();
-    const user = doc.data();
-    setUser({ ...user, id: doc.id });
+    const producto = doc.data();
+    setProducto({ ...producto, id: doc.id });
     setLoading(false);
   };
 
-  const deleteUser = async () => {
+  const deleteProducto = async () => {
     setLoading(true)
     const dbRef = firebase.db
-      .collection("users")
-      .doc(props.route.params.userId);
+      .collection("productos")
+      .doc(props.route.params.productoId);
     await dbRef.delete();
     setLoading(false)
-    props.navigation.navigate("UsersList");
+    props.navigation.navigate("ProductosList");
   };
 
   const openConfirmationAlert = () => {
     Alert.alert(
-      "Eliminando paciente",
+      "Eliminando producto",
       "está seguro?",
       [
-        { text: "SI", onPress: () => deleteUser() },
-        { text: "NO", onPress: () => console.log("canceled") },
+        { text: "SI", onPress: () => deleteProducto() },
+        { text: "NO", onPress: () => console.log("cancelado") },
       ],
       {
         cancelable: true,
@@ -59,20 +59,20 @@ const UserDetailScreen = (props) => {
     );
   };
 
-  const updateUser = async () => {
-    const userRef = firebase.db.collection("users").doc(user.id);
-    await userRef.set({
-      name: user.name,
-      birthday: user.birthday,
-      height: user.height,
-      adress:user.adress,
+  const updateProducto = async () => {
+    const productoRef = firebase.db.collection("productos").doc(producto.id);
+    await productoRef.set({
+      nombre: producto.nombre,
+      descripcion: producto.descripcion,
+      precio: producto.precio,
+      cantidad:producto.cantidad,
     });
-    setUser(initialState);
-    props.navigation.navigate("UsersList");
+    setProducto(initialState);
+    props.navigation.navigate("ProductosList");
   };
 
   useEffect(() => {
-    getUserById(props.route.params.userId);
+    getProductoById(props.route.params.productoId);
   }, []);
 
   if (loading) {
@@ -87,38 +87,38 @@ const UserDetailScreen = (props) => {
     <ScrollView style={styles.container}>
       <View>
         <TextInput
-          placeholder="Nombres completos"
-          autoCompleteType="username"
+          placeholder="Nombre de producto"
+          autoCompleteType="text"
           style={styles.inputGroup}
-          value={user.name}
-          onChangeText={(value) => handleTextChange(value, "name")}
+          value={producto.nombre}
+          onChangeText={(value) => handleTextChange(value, "nombre")}
         />
       </View>
       <View>
         <TextInput
           autoCompleteType="date"
-          placeholder="Fecha de nacimiento"
+          placeholder="Descripción"
           style={styles.inputGroup}
-          value={user.birthday}
-          onChangeText={(value) => handleTextChange(value, "birthday")}
+          value={producto.descripcion}
+          onChangeText={(value) => handleTextChange(value, "descripcion")}
         />
       </View>
       <View>
         <TextInput
-          placeholder="Estatura"
+          placeholder="Precio"
           autoCompleteType="number"
           style={styles.inputGroup}
-          value={user.height}
-          onChangeText={(value) => handleTextChange(value, "height")}
+          value={producto.precio}
+          onChangeText={(value) => handleTextChange(value, "precio")}
         />
       </View>
       <View>
         <TextInput
-          placeholder="Dirección"
-          autoCompleteType="text"
+          placeholder="Cantidad"
+          autoCompleteType="number"
           style={styles.inputGroup}
-          value={user.adress}
-          onChangeText={(value) => handleTextChange(value, "adress")}
+          value={producto.cantidad}
+          onChangeText={(value) => handleTextChange(value, "cantidad")}
         />
       </View>
       <View style={styles.btn}>
@@ -129,7 +129,7 @@ const UserDetailScreen = (props) => {
         />
       </View>
       <View>
-        <Button title="Editar" onPress={() => updateUser()} color="#19AC52" />
+        <Button title="Editar" onPress={() => updateProducto()} color="#19AC52" />
       </View>
     </ScrollView>
   );
@@ -161,4 +161,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default UserDetailScreen;
+export default ProductoDetailScreen;
