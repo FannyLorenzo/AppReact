@@ -106,7 +106,6 @@ const ProductoDetailScreen = (props) => {
       <View>
         <TextInput
           placeholder="Precio"
-          autoCompleteType="number"
           style={styles.inputGroup}
           value={producto.precio}
           onChangeText={(value) => handleTextChange(value, "precio")}
@@ -115,7 +114,6 @@ const ProductoDetailScreen = (props) => {
       <View>
         <TextInput
           placeholder="Cantidad"
-          autoCompleteType="number"
           style={styles.inputGroup}
           value={producto.cantidad}
           onChangeText={(value) => handleTextChange(value, "cantidad")}
@@ -124,7 +122,7 @@ const ProductoDetailScreen = (props) => {
       <View style={styles.btn}>
         <Button
           title="Eliminar"
-          onPress={() => openConfirmationAlert()}
+          onPress={() => deleteProducto() }
           color="#E37399"
         />
       </View>

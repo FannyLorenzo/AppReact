@@ -10,6 +10,8 @@ import { createStackNavigator } from "@react-navigation/stack";
 import CreateProductoScreen from "./screens/CreateProductoScreen";
 import ProductoDetailScreen from "./screens/ProductoDetailScreen";
 import ProductosList from "./screens/ProductosList";
+import PedidoListxVendedor from "./screens/PedidoListxVendedor";
+import PedidoListxVendedorEditar from "./screens/PedidoListxVendedorEditar";
 import InicioScreen from "./screens/InicioScreen";
 import PedidoList from "./screens/PedidoList"
 import CreatePedidoScreen from "./screens/CreatePedidoScreen"
@@ -33,7 +35,7 @@ function MyStack() {
       <Stack.Screen
         name="InicioScreen"
         component={InicioScreen}
-        options={{ title: "APP VENTAS" }}
+        options={{ title: "Mandaditos" }}
       />
       <Stack.Screen
         name="ProductosList"
@@ -54,6 +56,16 @@ function MyStack() {
         name="PedidoList"
         component={PedidoList}
         options={{ title: "Historial de compras" }}
+      />
+      <Stack.Screen
+        name="PedidoListxVendedor"
+        component={PedidoListxVendedor}
+        options={{ title: "Control de entregas" }}
+      />
+      <Stack.Screen
+        name="PedidoListxVendedorEditar"
+        component={PedidoListxVendedorEditar}
+        options={{ title: "Modificar estado de entrega" }}
       />
        <Stack.Screen
         name="CreatePedidoScreen"

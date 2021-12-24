@@ -17,10 +17,23 @@ const InicioScreen = (props) => {
             color="blue"
           />
         }
-        title=" Productos"
+        title=" Productos (vendedor) "
         type="outline"       
         
-      /> 
+      />          
+      <Button
+        onPress={() => props.navigation.navigate("PedidoListxVendedor")}
+        icon={
+          <Icon
+            name="cart-arrow-down"
+            size={15}
+            color="blue"
+          />
+        }
+        title=" Pedidos (vendedor)"
+        type="outline"       
+        
+      />  
        <Button
         onPress={() => props.navigation.navigate("PedidoList")}
         icon={
@@ -30,10 +43,10 @@ const InicioScreen = (props) => {
             color="blue"
           />
         }
-        title=" Compras"
+        title=" Pedidos (comprador)"
         type="outline"       
         
-      />      
+      />   
     </ScrollView>
     
   );

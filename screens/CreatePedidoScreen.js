@@ -17,7 +17,8 @@ const AddPedidoScreen = (props) => {
     fecha:"",
     precio:"",
     cantidad:"",
-    direccion:""
+    direccion:"",
+    entregado:false
   };
 
   const [state, setState] = useState(initalState);
@@ -63,7 +64,8 @@ const AddPedidoScreen = (props) => {
           fecha: state.fecha,
           precio:state.precio,
           cantidad:state.cantidad,
-          direccion: state.direccion
+          direccion: state.direccion,
+          entregado: false
         });
 
         props.navigation.navigate("PedidoList");
