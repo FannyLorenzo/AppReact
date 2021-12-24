@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Camera } from 'expo-camera';
+import { BottomSheet } from 'react-native-elements';
 
-export default function CameraComponent() {
+export default function CameraComponent(props) {
     const [hasPermission, setHasPermission] = useState(null);
     const [type, setType] = useState(Camera.Constants.Type.back);
 
@@ -22,7 +23,11 @@ export default function CameraComponent() {
     return (
         <View style={styles.container}>
             <Camera style={styles.camera} type={type}>
-                <View style={styles.buttonContainer}>
+                <View style={{paddingVertical: 7,
+                    backgroundColor: 'gray',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}>
                     <TouchableOpacity
                         onPress={() => {
                             setType(
@@ -33,11 +38,19 @@ export default function CameraComponent() {
                         }}>
                         <Text style={styles.text}>Voltear la cámara</Text>
                     </TouchableOpacity>
-                    </View>
-                    <View style={styles.buttonContainer}>
+                </View>
+                <View>
+
+                </View>
+                <View style={{
+                paddingVertical: 7,
+                    backgroundColor: '#19AC52',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                }}>
                     <TouchableOpacity
-                        onPress={() => props.navigation.navigate("ProductosList")}
-                        >
+                        onPress={() => props.navigation.navigate("CreateProductoScreen")}
+                    >
                         <Text style={styles.text}>Tomar Foto</Text>
                     </TouchableOpacity>
                 </View>

@@ -7,7 +7,7 @@ import {
     ScrollView,
     ActivityIndicator,
 } from "react-native";
-
+import { MapView } from "expo";
 
 const Location = (props) => {
     const [state, setState] = useState({
@@ -36,27 +36,37 @@ const Location = (props) => {
         Latitud:
         <View style={styles.inputGroup}>
             <TextInput
-            placeholder="Latitud"
-            value={state.latitud}
-          />
+                placeholder="Latitud"
+                value={state.latitud}
+            />
         </View>
-  
+
         {/* Longitud Input */}
         Longitud:
         <View style={styles.inputGroup}>
-          <TextInput
-            placeholder="Longitud"
-            multiline={true}
-           value={state.longitud}
-          />
+            <TextInput
+                placeholder="Longitud"
+                multiline={true}
+                value={state.longitud}
+            />
         </View>
         <View style={styles.button}>
-        <Button
-        onPress={() => props.navigation.navigate("InicioScreen")}
-        title="Volver"
-      />
-      </View>
-      </ScrollView>
+            <Button
+                onPress={() => props.navigation.navigate("InicioScreen")}
+                title="Volver"
+            />
+        </View>
+        <View style={styles.container}>
+            <MapView
+                initialRegion={{
+                    latitude: 37.78825,
+                    longitude: -122.4324,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                }}
+            />
+        </View>
+    </ScrollView>
     );
 };
 
