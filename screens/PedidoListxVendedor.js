@@ -5,8 +5,10 @@ import { ScrollView } from "react-native-gesture-handler";
 
 import firebase from "../database/firebase";
 
-const PedidoScreen = (props) => {
+const PedidoListxVendedor = (props) => {
   const [pedidos, setPedidos] = useState([]);
+
+
 
   useEffect(() => {    
     firebase.db.collection("pedidos").onSnapshot((querySnapshot) => {
@@ -29,15 +31,17 @@ const PedidoScreen = (props) => {
 
   return (
     <ScrollView>
-      <Button
-        onPress={() => props.navigation.navigate("CreatePedidoScreenListProducto")}
-        title="Agregar pedido"
-      />
+      
       {pedidos.map((pedido) => {
         return (
-          <ListItem
+            <ListItem
             key={pedido.id}
-            bottomDivider           
+            bottomDivider
+            onPress={() => {
+              props.navigation.navigate("PedidoListxVendedorEditar", {
+                productoId: pedido.id,
+              });
+            }}
           >
             <ListItem.Chevron />
             <Avatar
@@ -47,18 +51,21 @@ const PedidoScreen = (props) => {
               }}
               rounded
             />
+            
             <ListItem.Content>
               <ListItem.Title>{pedido.nombre}</ListItem.Title>
               <ListItem.Subtitle>Fecha: {pedido.fecha}</ListItem.Subtitle>              
               <ListItem.Subtitle>Precio: {pedido.precio}, Cantidad: {pedido.cantidad}</ListItem.Subtitle>
               <ListItem.Subtitle>Dirección: {pedido.direccion}</ListItem.Subtitle>
               <CheckBox
-              activeOpacity={1}
-              containerStyle={{ backgroundColor: "transparent", borderWidth: 0 }}
                 center
                 title="Entregado"
                 checked={pedido.entregado}
-                disable                
+                onPress={() => {
+                    props.navigation.navigate("PedidoListxVendedorEditar", {
+                      productoId: pedido.id,
+                    });
+                  }}
             />
             </ListItem.Content>
           </ListItem>
@@ -68,4 +75,4 @@ const PedidoScreen = (props) => {
   );
 };
 
-export default PedidoScreen;
+export default PedidoListxVendedor;

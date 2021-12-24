@@ -20,7 +20,8 @@
     "react-native": "https://github.com/expo/react-native/archive/sdk-39.0.4.tar.gz",
     "react-native-camera": "^4.2.1",
     "react-native-elements": "^3.0.0-alpha.1",
-    "react-native-gesture-handler": "~1.7.0",
+    "react-native-gesture-handler": "github:software-mansion/react-native-gesture-handler#196782c740cde1464e4ce4f5f46bf2c756ecdc43",
+    
     "react-native-reanimated": "~1.13.0",
     "react-native-safe-area-context": "3.1.4",
     "react-native-screens": "~2.10.1",
